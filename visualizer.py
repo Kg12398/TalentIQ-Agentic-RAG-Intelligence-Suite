@@ -7,7 +7,6 @@ from datetime import datetime
 from Generation import build_rag_chain, run_rag_pipeline, get_cached_pipeline, run_matchmaker
 from Parsing import parse_single_resume
 from Embeddings import embed_single_resume, delete_candidate
-from pdf_generator import create_pdf_from_md
 import speech_recognition as sr
 import io
 from audio_recorder_streamlit import audio_recorder
@@ -231,17 +230,6 @@ with tab1:
             except Exception as e:
                 st.caption(f"Voice synthesis failed: {e}")
 
-            if "pdf" in prompt.lower() or "report" in prompt.lower():
-                try:
-                    pdf_bytes = create_pdf_from_md(answer)
-                    st.download_button(
-                        label="📥 Download PDF Report",
-                        data=pdf_bytes,
-                        file_name=f"TalentIQ_Candidate_Report_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
-                        mime="application/pdf"
-                    )
-                except Exception as e:
-                    st.caption(f"PDF generation failed: {e}")
         
         st.session_state.messages.append({"role": "assistant", "content": answer})
 

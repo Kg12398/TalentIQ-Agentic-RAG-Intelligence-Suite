@@ -14,6 +14,12 @@ ENV/
 Resume data/
 Parsed data/
 
+# ─── Internal Development Files ───
+evaluation_report.md
+golden_dataset.json
+evaluate.py
+pdf_generator.py
+
 # ─── Local Databases (can be rebuilt) ───
 chroma_db/
 parent_docstore/
