@@ -1,0 +1,35 @@
+# ─── SECURITY: API Keys ───
+.env
+
+# ─── Python ───
+.venv/
+env/
+venv/
+ENV/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# ─── Sensitive Candidate Data ───
+Resume data/
+Parsed data/
+
+# ─── Local Databases (can be rebuilt) ───
+chroma_db/
+parent_docstore/
+
+# ─── Frontend ───
+node_modules/
+
+# ─── Streamlit ───
+.streamlit/
+
+# ─── IDE ───
+.vscode/
+.idea/
+
+# ─── Temp/OS ───
+~$*
+*.log
+Thumbs.db
+.DS_Store
