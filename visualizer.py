@@ -202,21 +202,28 @@ with tab1:
                 status.write("🧬 Activating Personal Intelligence Layer...")
                 status.write("📂 Loading Vector Database...")
                 pipeline = get_cached_pipeline()
-                status.write("🧠 Querying Neural Engine...")
                 
-                result = run_rag_pipeline(
-                    prompt, 
-                    pipeline=pipeline,
-                    history=st.session_state.messages, 
-                    summary=st.session_state.chat_summary
-                )
-                
-                answer = result.get("answer", "I encountered an issue. Please re-submit your query.")
-                st.session_state.messages = result.get("history", st.session_state.messages)
-                st.session_state.chat_summary = result.get("summary", "")
-                route = result.get("route", "RAG")
-                
-                status.update(label=f"Analysis Complete (Route: {route})", state="complete")
+                # ── EMPTY DATABASE GUARD ──────────────────────────────────
+                if pipeline is None:
+                    answer = (
+                        "⚠️ **No candidate data found in the database.**\n\n"
+                        "Please upload one or more PDF resumes using the **📥 Candidate Uploader** "
+                        "in the sidebar, then ask your question again."
+                    )
+                    status.update(label="No candidates loaded", state="error")
+                else:
+                    status.write("🧠 Querying Neural Engine...")
+                    result = run_rag_pipeline(
+                        prompt, 
+                        pipeline=pipeline,
+                        history=st.session_state.messages, 
+                        summary=st.session_state.chat_summary
+                    )
+                    answer = result.get("answer", "I encountered an issue. Please re-submit your query.")
+                    st.session_state.messages = result.get("history", st.session_state.messages)
+                    st.session_state.chat_summary = result.get("summary", "")
+                    route = result.get("route", "RAG")
+                    status.update(label=f"Analysis Complete (Route: {route})", state="complete")
 
             st.markdown(answer)
             
@@ -225,7 +232,7 @@ with tab1:
                 tts = gTTS(text=answer, lang='en', slow=False)
                 audio_fp = io.BytesIO()
                 tts.write_to_fp(audio_fp)
-                audio_fp.seek(0) # Reset pointer
+                audio_fp.seek(0)
                 st.audio(audio_fp, format='audio/mp3', autoplay=True)
             except Exception as e:
                 st.caption(f"Voice synthesis failed: {e}")

@@ -257,6 +257,15 @@ def build_rag_chain():
     db_data = vector_db.get()
     child_docs = [Document(page_content=t, metadata=m)
                   for t, m in zip(db_data['documents'], db_data['metadatas'])]
+    
+    # ── EMPTY DATABASE GUARD ──────────────────────────────────────────────────
+    # On Streamlit Cloud, chroma_db is empty (not in GitHub). Return None so
+    # the caller can show a friendly UI message instead of crashing.
+    if not child_docs:
+        print("[RAG INIT] WARNING: No documents found in the database. Returning empty pipeline.")
+        return None
+    # ─────────────────────────────────────────────────────────────────────────
+    
     bm25_child_retriever = BM25Retriever.from_documents(child_docs)
     bm25_child_retriever.k = 15
 
