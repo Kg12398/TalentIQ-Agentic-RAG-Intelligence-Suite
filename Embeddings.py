@@ -79,7 +79,7 @@ def embed_single_resume(md_file_path: str):
         )
         all_child_docs.extend(children)
         
-    print(f"  {filename}: {len(parents)} parents → {len(all_child_docs)} children")
+    print(f"  {filename}: {len(parents)} parents -> {len(all_child_docs)} children")
     
     print("\n[STEP 3] Embedding child chunks into ChromaDB...")
     embeddings_model = CohereEmbeddings(model="embed-english-v3.0")

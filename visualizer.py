@@ -105,7 +105,7 @@ with st.sidebar:
     if st.button("Process & Add", type="primary"):
         if uploaded_file is not None:
             # Generate a secure file path
-            upload_path = os.path.join(r"C:\Users\dell\Project\Resume data", uploaded_file.name)
+            upload_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Resume data", uploaded_file.name)
             
             # Save PDF locally
             with st.status("Ingesting Candidate File...", expanded=True) as status:
@@ -133,7 +133,7 @@ with st.sidebar:
     # 📁 ACTIVE CANDIDATE DELETION
     with st.expander("📁 Active Candidates", expanded=False):
         st.write("Candidates currently residing in Vector Memory:")
-        parsed_dir = r"C:\Users\dell\Project\Parsed data"
+        parsed_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Parsed data")
         if os.path.exists(parsed_dir):
             candidates = [f for f in os.listdir(parsed_dir) if f.endswith('.md')]
             if candidates:

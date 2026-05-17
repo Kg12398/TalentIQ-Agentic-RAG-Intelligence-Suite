@@ -34,8 +34,8 @@ def chunk_markdown_files():
     # chunk_size: Max characters per chunk 
     # chunk_overlap: Characters shared between chunks so we don't lose context if a sentence is cut in half
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
+        chunk_size=2000,
+        chunk_overlap=400
     )
 
     all_chunks = []
