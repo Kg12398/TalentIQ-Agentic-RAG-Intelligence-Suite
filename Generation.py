@@ -146,6 +146,7 @@ Follow these rules:
 4. TABLE PARSING: Dates in the resume may appear in Markdown table format. 
    Columns are separated by | pipes. Look carefully across all rows and columns.
 5. CANDIDATE: Always begin your answer by clearly stating the candidate's name.
+6. STRICTION: You MUST limit your answer to a MAXIMUM of 100 words (or 150 words ONLY if a detailed analysis is explicitly requested). If the user asks for candidate skills, output ONLY the skill names in a comma-separated list to save tokens. Do not write full introductory sentences or conversational filler.
 
 COMPLETE RESUME CONTENT:
 {full_resume}
@@ -158,7 +159,7 @@ RECENT CHAT HISTORY:
 
 User Question: {question}
 
-Detailed Answer (Think Step-by-Step):"""
+Concise HR Answer (MAX 100-150 WORDS, strictly follow Rule 6):"""
 
 
 def run_direct_lookup(candidate_name: str, user_question: str, llm, parsed_dir: str) -> str:
@@ -360,6 +361,7 @@ Rules:
 5. Extract and consider all relevant dates from education and work experience.
 6. When relevant, analyze the candidate’s timeline and identify gaps.
 7. Support answers with specific skills, tools, achievements, or metrics mentioned in the resume.
+8. STRICTION: You MUST limit your answer to a MAXIMUM of 100 words (or 150 words ONLY if a detailed analysis is explicitly requested). If the user asks for candidate skills, output ONLY the skill names in a comma-separated list to save tokens. Do not write full introductory sentences or conversational filler.
 
 Be clear, concise, and evidence-based.
     
@@ -374,7 +376,7 @@ Be clear, concise, and evidence-based.
 
     Question: {question}
     
-    Elite HR Answer (Think Step-by-Step):"""
+    Concise HR Answer (MAX 100-150 WORDS, strictly follow Rule 8):"""
 
     prompt = PromptTemplate.from_template(prompt_template)
 
