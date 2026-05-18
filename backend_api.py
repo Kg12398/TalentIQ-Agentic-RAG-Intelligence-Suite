@@ -8,7 +8,7 @@ from Generation import run_rag_pipeline, get_cached_pipeline
 app = FastAPI(title="TalentIQ Intelligence API", version="1.0.0")
 
 # ── CORS CONFIGURATION ──
-# Required so the React frontend (port 3000) can talk to this API (port 8000)
+# Required so the React frontend (port 3000) can talk to this API (port 8000),
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # In production, replace with ['http://localhost:3000']
