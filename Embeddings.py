@@ -12,7 +12,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # ─────────────────────────────────────────────────────────────
 #  PARENT-CHILD CHUNKING PIPELINE
-#
+#  for making it precise and accurate
 #  Parent chunks (2000 chars) → saved to parent_docstore/ as JSON files
 #  Child  chunks (300  chars) → embedded into chroma_db/
 #  Each child has metadata["parent_id"] linking it to its parent
