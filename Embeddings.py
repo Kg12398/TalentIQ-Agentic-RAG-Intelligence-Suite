@@ -1,3 +1,4 @@
+# Used gemini-text embedding-001
 import os
 import time
 import uuid
