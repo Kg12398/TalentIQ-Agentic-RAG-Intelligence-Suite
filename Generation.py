@@ -1,3 +1,4 @@
+# Generation code
 import os
 import json
 import time
@@ -42,7 +43,7 @@ def is_chitchat(prompt):
 
 
 # ─────────────────────────────────────────────
-#  SHARED HELPERS
+#  SHARED HELPERS 
 # ─────────────────────────────────────────────
 
 def format_docs(docs):
