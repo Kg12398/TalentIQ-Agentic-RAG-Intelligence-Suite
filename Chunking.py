@@ -1,3 +1,4 @@
+#CHUNKING
 import os
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
 
